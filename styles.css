@@ -18,6 +18,8 @@ body {
     margin-bottom: 20px;
 }
 
+/* --- สไตล์สำหรับหน้า index.html (หน้าใส่รหัส) --- */
+
 .main-container {
     display: flex;
     justify-content: center;
@@ -28,7 +30,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     width: 90%;
-    flex-wrap: wrap; /* เพื่อให้ลงบรรทัดใหม่เมื่อหน้าจอเล็ก */
+    flex-wrap: wrap; 
 }
 
 .photo-container {
@@ -40,10 +42,19 @@ body {
     margin-right: 20px;
 }
 
+/* สไตล์รูปภาพ: เพิ่ม Transition สำหรับ Mosaic Effect */
 .photo-container img {
     width: 100%;
     height: auto;
     border-radius: 10px;
+    transition: filter 1s ease-in-out, opacity 1s ease-in-out, transform 1s ease-in-out; 
+}
+
+/* Mosaic Effect Class */
+.photo-container img.mosaic-effect {
+    opacity: 0.2; 
+    filter: grayscale(100%) blur(8px) contrast(200%); 
+    transform: scale(1.05); 
 }
 
 .passcode-panel {
@@ -125,9 +136,8 @@ body {
 
 /* --- สไตล์สำหรับหน้า index2.html (หน้าเมนู) --- */
 
-/* อัปเดตเพื่อให้มี position: relative เพื่อรองรับปุ่ม Lock */
 .main-menu-container {
-    position: relative; /* เพิ่มบรรทัดนี้ */
+    position: relative; 
     background-color: #FFFFFF;
     border-radius: 25px;
     padding: 40px;
@@ -162,7 +172,7 @@ body {
     align-items: center;
     text-decoration: none;
     color: #4A4A4A;
-    background-color: #FCE4EC; /* สีชมพูอ่อนๆ */
+    background-color: #FCE4EC; 
     border-radius: 15px;
     padding: 20px;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -207,8 +217,8 @@ body {
 }
 
 .small-lock-icon {
-    width: 35px; /* ปรับขนาดไอคอน */
-    height: 35px; /* ปรับขนาดไอคอน */
+    width: 35px; 
+    height: 35px; 
     display: block;
 }
 
@@ -254,18 +264,92 @@ body {
     font-size: 1em;
 }
 
-/* ... โค้ด CSS เดิมของคุณ ... */
 
-/* --- สไตล์สำหรับ Mosaic Effect ตอนเปลี่ยนรูป --- */
-.photo-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: filter 1s ease-in-out, opacity 1s ease-in-out; /* เพิ่ม transition */
-}
+/* ================================================= */
+/* === MEDIA QUERIES: RESPONSIVE DESIGN (มือถือ) === */
+/* ================================================= */
 
-.photo-container img.mosaic-effect {
-    opacity: 0.2; /* ทำให้รูปจางลง */
-    filter: grayscale(100%) blur(8px) contrast(200%); /* เอฟเฟกต์โมเสก */
-    transform: scale(1.05); /* ขยายเล็กน้อยเพื่อเพิ่มมิติ */
+@media screen and (max-width: 600px) {
+    
+    /* ทั่วไป */
+    .top-title {
+        font-size: 1.3em;
+    }
+    
+    /* index.html (หน้าใส่รหัส) */
+    .main-container {
+        padding: 15px;
+        flex-direction: column; /* ให้รูปภาพและ keypad เรียงกันในแนวตั้ง */
+    }
+
+    .photo-container {
+        margin-right: 0; 
+        margin-bottom: 20px; /* เพิ่มช่องว่างระหว่างรูปภาพกับ keypad */
+        min-width: 100%; /* ใช้ความกว้างเต็มที่ */
+    }
+    
+    .photo-container img {
+        max-height: 300px; /* จำกัดความสูงของรูปภาพบนมือถือ */
+        object-fit: cover;
+    }
+
+    .passcode-panel {
+        min-width: 100%; /* ใช้ความกว้างเต็มที่ */
+    }
+
+    .keypad {
+        gap: 10px; /* ลดช่องว่างระหว่างปุ่ม */
+        max-width: 300px; /* จำกัดขนาด keypad ไม่ให้ใหญ่เกินไป */
+    }
+    
+    .keypad-btn {
+        padding: 15px 0; /* ลดความสูงของปุ่ม */
+        font-size: 1.4em;
+    }
+    
+    /* index2.html (หน้าเมนู) */
+    .main-menu-container {
+        padding: 30px 20px;
+    }
+
+    .menu-title {
+        font-size: 1.8em;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 15px;
+    }
+    
+    .menu-icon {
+        width: 60px; /* ไอคอนเล็กลง */
+        height: 60px;
+    }
+
+    .menu-text {
+        font-size: 1em;
+    }
+    
+    /* ปุ่ม Lock */
+    .lock-icon-button {
+        top: 10px;
+        right: 10px;
+        padding: 3px;
+    }
+
+    .small-lock-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    /* หน้าย่อย */
+    .page-title {
+        font-size: 1.8em;
+    }
+    .page-content {
+        font-size: 1em;
+    }
+    .container {
+         padding: 15px;
+    }
 }
